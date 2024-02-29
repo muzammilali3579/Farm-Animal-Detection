@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Deployment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Animal Intrusion Detection</h1>
+        <form id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*">
+            <input type="submit" value="Predict">
+        </form>
+        <div id="result">
+            <!-- Predicted output will be displayed here -->
+        </div>
+        <div id="uploadedImage">
+            <!-- Uploaded image will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle form submission and display result
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            var formData = new FormData(this); // Create form data object
+            
+            // Clear previous uploaded image
+            document.getElementById('uploadedImage').innerHTML = '';
+
+            // Make a POST request to /predict endpoint
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text()) // Parse response as text
+            .then(data => {
+                // Display predicted output in result div
+                document.getElementById('result').innerText = data;
+                
+                // Display uploaded image
+                var fileInput = document.querySelector('input[type="file"]');
+                var file = fileInput.files[0];
+                var reader = new FileReader();
+
+                reader.onloadend = function() {
+                    var img = document.createElement('img');
+                    img.src = reader.result;
+                    img.style.maxWidth = "100%"; // Set maximum width
+                    document.getElementById('uploadedImage').appendChild(img);
+                }
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    var img = document.createElement('img');
+                    img.src = "";
+                    document.getElementById('uploadedImage').appendChild(img);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
