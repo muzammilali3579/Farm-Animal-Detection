@@ -1,0 +1,66 @@
+/* Style for the main container */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Style for the header */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Style for the form */
+form {
+    text-align: center;
+}
+
+/* Style for the file input */
+input[type="file"] {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style for the submit button */
+input[type="submit"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style for the uploaded image */
+#uploadedImage {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style for the result */
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Style for the predicted class */
+.predicted-class {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Style for the confidence level */
+.confidence-level {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #666;
+}
