@@ -56,5 +56,5 @@ def predict_route():
         return f"Predicted Class: {predicted_class} \n Confidence: {confidence}%"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
